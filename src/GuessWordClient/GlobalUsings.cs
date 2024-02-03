@@ -1,0 +1,13 @@
+global using System.Net;
+global using System.Net.Http.Headers;
+global using System.Net.Http.Json;
+global using System.Security.Cryptography;
+global using System.Text;
+global using System.Text.Json;
+global using System.Text.Json.Serialization;
+global using Flurl;
+global using GuessWordClient.Exceptions;
+global using GuessWordClient.Models;
+global using JetBrains.Annotations;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Options;
