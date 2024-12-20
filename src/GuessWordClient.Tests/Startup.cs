@@ -1,8 +1,6 @@
-using System.Reflection;
-using Xunit.DependencyInjection.Logging;
-
 namespace GuessWordClient.Tests;
 
+[PublicAPI]
 public class Startup {
 	public void ConfigureHost(IHostBuilder hostBuilder) {
 		hostBuilder
