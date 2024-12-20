@@ -10,7 +10,7 @@
         <PackageProjectUrl>https://github.com/ch1seL/GuessWordClient/</PackageProjectUrl>
         <PackageIcon>icon.png</PackageIcon>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <RepositoryUrl>https://github.com/ch1seL/GuessWordClient/</RepositoryUrl>
+        <RepositoryUrl>https://github.com/capybara-pro-code/guess-word-client</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>guess word client</PackageTags>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
