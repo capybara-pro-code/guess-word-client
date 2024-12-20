@@ -10,6 +10,7 @@ public class Startup {
 			})
 			.ConfigureHostConfiguration(builder => {
 				builder.AddUserSecrets(Assembly.GetExecutingAssembly());
+				builder.AddEnvironmentVariables();
 			})
 			.ConfigureServices((context, services) => {
 				services.AddHostedService<CleanupService>();
