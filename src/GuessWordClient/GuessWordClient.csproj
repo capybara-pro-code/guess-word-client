@@ -2,7 +2,7 @@
 
     <ItemGroup>
         <PackageReference Include="Flurl"/>
-        <PackageReference Include="JetBrains.Annotations" />
+        <PackageReference Include="JetBrains.Annotations"/>
         <PackageReference Include="Macross.Json.Extensions"/>
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions"/>
         <PackageReference Include="Microsoft.Extensions.Http"/>

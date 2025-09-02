@@ -34,6 +34,17 @@ public class GuessWordClientTests(IGuessWordClient client, IOptions<GuessWordCli
 	}
 
 	[Fact]
+	public async Task GuessNonExistentWordReturnsError() {
+		RoomInfo room = await client.CreateRoom("Test-GuessWrongWordReturnsError", RoomDifficulty.Easy, CancellationToken.None);
+		room = await client.GetRoom(room.Slug, true, CancellationToken.None);
+
+		var act = new Func<Task>(() => client.Guess(room.Slug, "словокоторогонет", CancellationToken.None));
+
+		ExceptionAssertions<ErrorResultException>? exception = await act.Should().ThrowAsync<ErrorResultException>();
+		exception.Which.ErrorCode.Should().Be(ErrorCode.WordNotFound);
+	}
+
+	[Fact]
 	public async Task GuessRightWordReturnsOrder1() {
 		RoomInfo room = await client.CreateRoom("Test-GuessRightWordReturnsOrder1", RoomDifficulty.Easy, CancellationToken.None);
 		room = await client.GetRoom(room.Slug, true, CancellationToken.None);
@@ -49,16 +60,5 @@ public class GuessWordClientTests(IGuessWordClient client, IOptions<GuessWordCli
 			r => r.Order == 1 && r.AlreadyGuessed,
 			"Second try should be AlreadyGuessed"
 		);
-	}
-
-	[Fact]
-	public async Task GuessNonExistentWordReturnsError() {
-		RoomInfo room = await client.CreateRoom("Test-GuessWrongWordReturnsError", RoomDifficulty.Easy, CancellationToken.None);
-		room = await client.GetRoom(room.Slug, true, CancellationToken.None);
-
-		var act = new Func<Task>(() => client.Guess(room.Slug, "словокоторогонет", CancellationToken.None));
-
-		ExceptionAssertions<ErrorResultException>? exception = await act.Should().ThrowAsync<ErrorResultException>();
-		exception.Which.ErrorCode.Should().Be(ErrorCode.WordNotFound);
 	}
 }

@@ -16,8 +16,7 @@ public static class ServiceCollectionExtensions {
 	public static IHttpClientBuilder AddGuessWordClient(this IServiceCollection services, Action<IServiceProvider, GuessWordClientOptions>? configureOptions) {
 		if (configureOptions != null) {
 			services.AddOptions();
-			services.AddSingleton<IConfigureOptions<GuessWordClientOptions>>(
-				provider => new ConfigureOptions<GuessWordClientOptions>(options => configureOptions(provider, options)));
+			services.AddSingleton<IConfigureOptions<GuessWordClientOptions>>(provider => new ConfigureOptions<GuessWordClientOptions>(options => configureOptions(provider, options)));
 		}
 		return services.AddSingleton<GuessWordJwtAuthorizationHandler>()
 		               .AddHttpClient<IGuessWordClient, GuessWordClient>((sp, client) => {

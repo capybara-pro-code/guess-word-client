@@ -15,7 +15,7 @@ public class GuessWordClient(HttpClient httpClient) : IGuessWordClient {
 		};
 		HttpResponseMessage response = await httpClient.PostAsJsonAsync(Uris.Rooms, request, cancellationToken);
 		response.EnsureSuccessStatusCode();
-		return await response.Content.ReadFromJsonAsync<RoomInfo>(cancellationToken: cancellationToken)
+		return await response.Content.ReadFromJsonAsync<RoomInfo>(cancellationToken)
 		       ?? throw new InvalidOperationException("Root was not created");
 	}
 
@@ -36,12 +36,12 @@ public class GuessWordClient(HttpClient httpClient) : IGuessWordClient {
 			word
 		}, cancellationToken);
 		if (response.StatusCode is HttpStatusCode.BadRequest) {
-			ErrorResult errorResult = await response.Content.ReadFromJsonAsync<ErrorResult>(cancellationToken: cancellationToken)
+			ErrorResult errorResult = await response.Content.ReadFromJsonAsync<ErrorResult>(cancellationToken)
 			                          ?? throw new InvalidOperationException("Error is null");
 			throw new ErrorResultException(errorResult);
 		}
 		response.EnsureSuccessStatusCode();
-		return await response.Content.ReadFromJsonAsync<GuessResult>(cancellationToken: cancellationToken)
+		return await response.Content.ReadFromJsonAsync<GuessResult>(cancellationToken)
 		       ?? throw new InvalidOperationException("Guess is null");
 	}
 

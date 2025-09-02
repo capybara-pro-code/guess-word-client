@@ -65,7 +65,7 @@ public class GuessWordJwtAuthorizationHandler : DelegatingHandler {
 			Url? uri = _options.Value.BaseUri.AppendPathSegments(Uris.Auth, "jwt", "create");
 			HttpResponseMessage response = await _httpClient.PostAsJsonAsync(uri, auth, cancellationToken);
 			response.EnsureSuccessStatusCode();
-			return await response.Content.ReadFromJsonAsync<JwtToken>(cancellationToken: cancellationToken) ??
+			return await response.Content.ReadFromJsonAsync<JwtToken>(cancellationToken) ??
 			       throw new InvalidOperationException("Jwt is null");
 		}
 	}
@@ -80,7 +80,7 @@ public class GuessWordJwtAuthorizationHandler : DelegatingHandler {
 			Url? uri = _options.Value.BaseUri.AppendPathSegments(Uris.Auth, "jwt", "refresh");
 			HttpResponseMessage response = await _httpClient.PostAsJsonAsync(uri, refresh, cancellationToken);
 			response.EnsureSuccessStatusCode();
-			return await response.Content.ReadFromJsonAsync<JwtToken>(cancellationToken: cancellationToken) ??
+			return await response.Content.ReadFromJsonAsync<JwtToken>(cancellationToken) ??
 			       throw new InvalidOperationException("Jwt is null");
 		}
 	}
