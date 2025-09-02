@@ -83,8 +83,8 @@ jobs:
           dotnet test --no-build --framework net9.0 -c Release --logger "console;verbosity=normal" --logger "trx;LogFilePrefix=results" -m
         env:
           RoomsPrefix: "GitHubCi_${{ github.run_id }}"
-          GuessWordClient__Username: "guesswordclient_github_ci"
-          GuessWordClient__Password: ${{ secrets.GUESS_WORD_PASSWORD }}
+          GuessWordClient__Username: ${{ vars.GUESSWORD_USERNAME }}
+          GuessWordClient__Password: ${{ secrets.GUESSWORD_PASSWORD }}
       
       - name: Upload test results trx files
         uses: actions/upload-artifact@v4
