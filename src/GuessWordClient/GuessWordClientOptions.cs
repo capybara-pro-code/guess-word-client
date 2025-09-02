@@ -1,13 +1,10 @@
 namespace GuessWordClient;
 
 public record GuessWordClientOptions {
-	public string BaseUri { get; init; } = "https://guess-word.com/";
+	public string BaseUri { get; set; } = "https://guess-word.com/";
 
-#if NET8_0_OR_GREATER
-	public required string Username { get; init; }
-	public required string Password { get; init; }
-#else
-	public string Username { get; init; } = null!;
-	public string Password { get; init; } = null!;
-#endif
+	public required string Username { get; set; }
+	public required string Password { get; set; }
+	public required bool StoreCookieInFile { get; set; } = true;
+	public required string CookieFilePath { get; set; } = "cookie.json";
 }

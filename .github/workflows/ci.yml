@@ -82,6 +82,7 @@ jobs:
           dotnet test --no-build --framework net8.0 -c Release --logger "console;verbosity=normal" --logger "trx;LogFilePrefix=results" -m
           dotnet test --no-build --framework net9.0 -c Release --logger "console;verbosity=normal" --logger "trx;LogFilePrefix=results" -m
         env:
+          RoomsPrefix: "GitHubCi_${{ github.run_id }}"
           GuessWordClient__Username: "guesswordclient_github_ci"
           GuessWordClient__Password: ${{ secrets.GUESS_WORD_PASSWORD }}
       

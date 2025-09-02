@@ -1,18 +1,21 @@
 namespace GuessWordClient.Tests.Helpers;
 
-public class CleanupService(IGuessWordClient client) : IHostedService {
+public class CleanupService(IGuessWordClient client, TestsValues testsValues) : IHostedService {
 	public async Task StartAsync(CancellationToken cancellationToken) {
 		await Cleanup(cancellationToken);
 	}
 
-	public Task StopAsync(CancellationToken cancellationToken) {
-		return Task.CompletedTask;
+	public async Task StopAsync(CancellationToken cancellationToken) {
+		await Cleanup(cancellationToken);
 	}
 
 	private async Task Cleanup(CancellationToken cancellationToken) {
 		IReadOnlyCollection<RoomInfo> rooms = await client.GetRooms(cancellationToken);
-		foreach ((string _, string slug, bool _, DateTimeOffset _, RoomInfoStat _) in rooms) {
-			await client.DeleteRoom(slug, cancellationToken);
+		foreach (RoomInfo room in rooms
+			         // comment this line to delete all test rooms
+			         .Where(r => r.Name.StartsWith(testsValues.RoomsPrefix))
+		        ) {
+			await client.DeleteRoom(room.Slug, cancellationToken);
 		}
 	}
 }

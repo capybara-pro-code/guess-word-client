@@ -1,28 +1,40 @@
+using GuessWordClient.CookieAuth;
+
 namespace GuessWordClient;
 
 public static class ServiceCollectionExtensions {
-	public static IHttpClientBuilder AddGuessWordClient(this IServiceCollection services, Action<GuessWordClientOptions>? configureOptions = null) {
+	public static IServiceCollection AddGuessWordClient(this IServiceCollection services, Action<GuessWordClientOptions>? configureOptions = null) {
 		if (configureOptions != null) {
 			services.Configure(configureOptions);
 		}
-		return services.AddSingleton<GuessWordJwtAuthorizationHandler>()
-		               .AddHttpClient<IGuessWordClient, GuessWordClient>((sp, client) => {
-			               string baseUri = sp.GetRequiredService<IOptions<GuessWordClientOptions>>().Value.BaseUri;
-			               client.BaseAddress = new Uri(baseUri);
-		               })
-		               .AddHttpMessageHandler<GuessWordJwtAuthorizationHandler>();
+		services
+			.AddSingleton<CookieWithXcsrfTokenHandler>()
+			.AddSingleton<AuthorizationHandler>();
+
+		services
+			.AddHttpClient<IGuessWordClient, GuessWordClient>((sp, client) => {
+				string baseUri = sp.GetRequiredService<IOptions<GuessWordClientOptions>>().Value.BaseUri;
+				client.BaseAddress = new Uri(baseUri);
+			})
+			.ConfigurePrimaryHttpMessageHandler(sp => sp.GetRequiredService<CookieWithXcsrfTokenHandler>())
+			.AddHttpMessageHandler<AuthorizationHandler>();
+
+		services
+			.AddHttpClient(nameof(AuthorizationHandler), (sp, client) => {
+				string baseUri = sp.GetRequiredService<IOptions<GuessWordClientOptions>>().Value.BaseUri;
+				client.BaseAddress = new Uri(baseUri);
+			})
+			.ConfigurePrimaryHttpMessageHandler(sp => sp.GetRequiredService<CookieWithXcsrfTokenHandler>());
+
+		return services;
 	}
 
-	public static IHttpClientBuilder AddGuessWordClient(this IServiceCollection services, Action<IServiceProvider, GuessWordClientOptions>? configureOptions) {
-		if (configureOptions != null) {
-			services.AddOptions();
-			services.AddSingleton<IConfigureOptions<GuessWordClientOptions>>(provider => new ConfigureOptions<GuessWordClientOptions>(options => configureOptions(provider, options)));
+	public static IServiceCollection AddGuessWordClient(this IServiceCollection services, Action<IServiceProvider, GuessWordClientOptions>? configureOptionsWithServiceProvider) {
+		if (configureOptionsWithServiceProvider == null) {
+			return AddGuessWordClient(services, configureOptions: null);
 		}
-		return services.AddSingleton<GuessWordJwtAuthorizationHandler>()
-		               .AddHttpClient<IGuessWordClient, GuessWordClient>((sp, client) => {
-			               string baseUri = sp.GetRequiredService<IOptions<GuessWordClientOptions>>().Value.BaseUri;
-			               client.BaseAddress = new Uri(baseUri);
-		               })
-		               .AddHttpMessageHandler<GuessWordJwtAuthorizationHandler>();
+		services.AddOptions();
+		services.AddSingleton<IConfigureOptions<GuessWordClientOptions>>(provider => new ConfigureOptions<GuessWordClientOptions>(options => configureOptionsWithServiceProvider(provider, options)));
+		return AddGuessWordClient(services, configureOptions: null);
 	}
 }

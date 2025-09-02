@@ -2,8 +2,7 @@
 
 public class GuessWordClient(HttpClient httpClient) : IGuessWordClient {
 	public async Task<MeInfo> GetMe(CancellationToken cancellationToken) {
-		Url? uri = Uris.Auth.AppendPathSegments("users", "me", '/');
-		return await httpClient.GetFromJsonAsync<MeInfo>(uri, cancellationToken)
+		return await httpClient.GetFromJsonAsync<MeInfo>(Uris.Me, cancellationToken)
 		       ?? throw new InvalidOperationException("Me is null");
 	}
 
@@ -13,7 +12,7 @@ public class GuessWordClient(HttpClient httpClient) : IGuessWordClient {
 			difficulty,
 			word = string.Empty
 		};
-		HttpResponseMessage response = await httpClient.PostAsJsonAsync(Uris.Rooms, request, cancellationToken);
+		HttpResponseMessage response = await httpClient.PostAsJsonAsync(Uris.Rooms.AppendPathSegment("create/"), request, cancellationToken);
 		response.EnsureSuccessStatusCode();
 		return await response.Content.ReadFromJsonAsync<RoomInfo>(cancellationToken)
 		       ?? throw new InvalidOperationException("Root was not created");
@@ -55,7 +54,7 @@ public class GuessWordClient(HttpClient httpClient) : IGuessWordClient {
 	}
 
 	private static class Uris {
-		public const string Auth = "api/auth/";
+		public const string Me = "api/me/";
 		public const string Rooms = "api/rooms/";
 	}
 }
