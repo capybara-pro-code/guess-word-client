@@ -13,8 +13,6 @@
         <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets"/>
         <PackageReference Include="Microsoft.Extensions.Http"/>
         <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions"/>
-        <PackageReference Remove="Serilog.Extensions.Hosting"/>
-        <PackageReference Remove="Serilog.Sinks.XUnit"/>
     </ItemGroup>
 
 </Project>
