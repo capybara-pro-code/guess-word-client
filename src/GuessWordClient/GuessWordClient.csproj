@@ -1,12 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <ItemGroup>
-        <PackageReference Include="Flurl"/>
-        <PackageReference Include="JetBrains.Annotations">
-            <ExcludeAssets>runtime</ExcludeAssets>
-        </PackageReference>
-        <PackageReference Include="Macross.Json.Extensions"/>
-        <PackageReference Include="Microsoft.Extensions.Http"/>
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Flurl" />
+    <PackageReference Include="JetBrains.Annotations.Sources">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Macross.Json.Extensions" />
+    <PackageReference Include="Microsoft.Extensions.Http" />
+  </ItemGroup>
 
 </Project>

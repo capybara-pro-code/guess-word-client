@@ -1,18 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <UserSecretsId>796d71cd-d992-48f8-b256-a42096d87a73</UserSecretsId>
-    </PropertyGroup>
+  <PropertyGroup>
+    <UserSecretsId>796d71cd-d992-48f8-b256-a42096d87a73</UserSecretsId>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <ProjectReference Include="..\GuessWordClient\GuessWordClient.csproj"/>
-    </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GuessWordClient\GuessWordClient.csproj" />
+  </ItemGroup>
 
-    <ItemGroup>
-        <PackageReference Include="JetBrains.Annotations"/>
-        <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets"/>
-        <PackageReference Include="Microsoft.Extensions.Http"/>
-        <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions"/>
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations.Sources">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" />
+    <PackageReference Include="Microsoft.Extensions.Http" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />
+  </ItemGroup>
 
 </Project>

@@ -3,14 +3,6 @@
 namespace GuessWordClient.CookieAuth;
 
 public class SerializableCookie {
-	public string Name { get; set; } = null!;
-	public string Value { get; set; } = null!;
-	public string Domain { get; set; } = null!;
-	public string Path { get; set; } = null!;
-	public DateTime Expires { get; set; }
-	public bool Secure { get; set; }
-	public bool HttpOnly { get; set; }
-
 	// ReSharper disable once UnusedMember.Global
 	public SerializableCookie() { }
 
@@ -23,6 +15,14 @@ public class SerializableCookie {
 		Secure = cookie.Secure;
 		HttpOnly = cookie.HttpOnly;
 	}
+
+	public string Name { get; set; } = null!;
+	public string Value { get; set; } = null!;
+	public string Domain { get; set; } = null!;
+	public string Path { get; set; } = null!;
+	public DateTime Expires { get; set; }
+	public bool Secure { get; set; }
+	public bool HttpOnly { get; set; }
 
 	public Cookie ToCookie() {
 		return new Cookie(Name, Value, Path, Domain) {

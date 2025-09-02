@@ -1,14 +1,19 @@
 namespace GuessWordClient.CookieAuth;
 
 public class CookieWithXcsrfTokenHandler : HttpClientHandler {
+	private readonly string? _cookieFilePath;
+	private readonly SemaphoreSlim _semaphore = new(1);
+
+	private readonly JsonSerializerOptions _jsonSerializerOptions = new() {
+		WriteIndented = true,
+		DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+	};
+
 	public CookieWithXcsrfTokenHandler(IOptions<GuessWordClientOptions> options) {
 		_cookieFilePath = options.Value.StoreCookieInFile ? options.Value.CookieFilePath : null;
 		CookieContainer = LoadOrCreateCookie();
 		UseCookies = true;
 	}
-
-	private readonly string? _cookieFilePath;
-	private readonly SemaphoreSlim _semaphore = new(1);
 
 	protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken) {
 		await _semaphore.WaitAsync(cancellationToken);
@@ -26,11 +31,6 @@ public class CookieWithXcsrfTokenHandler : HttpClientHandler {
 			_semaphore.Release();
 		}
 	}
-
-	private readonly JsonSerializerOptions _jsonSerializerOptions = new() {
-		WriteIndented = true,
-		DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-	};
 
 	private void SaveCookie(CookieCollection cookieCollection) {
 		var cookies = new List<SerializableCookie>();

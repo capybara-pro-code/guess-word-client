@@ -1,35 +1,35 @@
 <Project>
-    <PropertyGroup>
-        <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
 
-        <Authors>Aleksandr Salamatov</Authors>
-        <Description>.Net Client for https://guess-word.com/</Description>
-        <Copyright>Copyright 2024 (c) Alexander Salamatov. All rights reserved.</Copyright>
-        <PackageProjectUrl>https://github.com/ch1seL/GuessWordClient/</PackageProjectUrl>
-        <PackageIcon>icon.png</PackageIcon>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
-        <RepositoryUrl>https://github.com/capybara-pro-code/guess-word-client</RepositoryUrl>
-        <RepositoryType>git</RepositoryType>
-        <PackageTags>guess word client</PackageTags>
-        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <Authors>Aleksandr Salamatov</Authors>
+    <Description>.Net Client for https://guess-word.com/</Description>
+    <Copyright>Copyright 2024 (c) Alexander Salamatov. All rights reserved.</Copyright>
+    <PackageProjectUrl>https://github.com/ch1seL/GuessWordClient/</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/capybara-pro-code/guess-word-client</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>guess word client</PackageTags>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
 
-        <IncludeSymbols>true</IncludeSymbols>
-        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
 
-        <LangVersion>latest</LangVersion>
-    </PropertyGroup>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <None Include="../../LICENSE" Pack="true" PackagePath=""/>
-        <None Include="../../icon.png" Pack="true" PackagePath=""/>
-        <None Include="../../README.md" Pack="true" PackagePath=""/>
-    </ItemGroup>
+  <ItemGroup>
+    <None Include="../../LICENSE" Pack="true" PackagePath="" />
+    <None Include="../../icon.png" Pack="true" PackagePath="" />
+    <None Include="../../README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
 
-    <ItemGroup>
-        <InternalsVisibleTo Include="$(AssemblyName).Tests"/>
-    </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="$(AssemblyName).Tests" />
+  </ItemGroup>
 
-    <Import Project="Tests.props" Condition="$(MSBuildProjectFile.EndsWith('Tests.csproj'))"/>
+  <Import Project="Tests.props" Condition="$(MSBuildProjectFile.EndsWith('Tests.csproj'))" />
 </Project>

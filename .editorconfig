@@ -274,3 +274,9 @@ tab_width = 4
 indent_style = space
 indent_size = 4
 tab_width = 4
+
+[*.{csproj,props}]
+indent_style = space
+indent_size = 2
+tab_width = 2
+resharper_html_space_before_self_closing = true

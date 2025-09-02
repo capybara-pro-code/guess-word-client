@@ -20,16 +20,15 @@ public class AuthorizationHandler(IOptions<GuessWordClientOptions> options, IHtt
 		HttpResponseMessage responseMessage = await _httpClient.PostAsJsonAsync(Uris.Login, new {
 			username = options.Value.Username,
 			password = options.Value.Password
-		}, cancellationToken: cancellationToken);
+		}, cancellationToken);
 		responseMessage.EnsureSuccessStatusCode();
 		string result = await responseMessage.Content.ReadAsStringAsync(cancellationToken);
 		if (result == """
 		              "Auth success"
 		              """) {
 			return await base.SendAsync(request, cancellationToken);
-		} else {
-			throw new HttpRequestException("Authorization failed", null, HttpStatusCode.Unauthorized);
 		}
+		throw new HttpRequestException("Authorization failed", null, HttpStatusCode.Unauthorized);
 	}
 
 	private static class Uris {

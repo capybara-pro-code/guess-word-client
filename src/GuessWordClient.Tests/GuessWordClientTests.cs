@@ -3,7 +3,7 @@
 [Trait("Category", "Huge")]
 public class GuessWordClientTests(IGuessWordClient client, IOptions<GuessWordClientOptions> options, TestsValues testsValues) {
 	[Theory]
-	[InlineData($"CreateRoomReturnsRoomId-Easy", RoomDifficulty.Easy)]
+	[InlineData("CreateRoomReturnsRoomId-Easy", RoomDifficulty.Easy)]
 	[InlineData("CreateRoomReturnsRoomId-Medium", RoomDifficulty.Medium)]
 	[InlineData("CreateRoomReturnsRoomId-Hard", RoomDifficulty.Hard)]
 	public async Task CreateRoomReturnsRoomId(string name, RoomDifficulty difficulty) {
