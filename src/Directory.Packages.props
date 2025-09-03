@@ -12,12 +12,12 @@
         <PackageVersion Include="Flurl" Version="4.0.0"/>
         <PackageVersion Include="JetBrains.Annotations" Version="2025.2.2"/>
         <PackageVersion Include="Macross.Json.Extensions" Version="3.0.0"/>
-        <PackageVersion Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.0"/>
-        <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0"/>
-        <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0"/>
-        <PackageVersion Include="Microsoft.Extensions.Http" Version="9.0.0"/>
-        <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.0"/>
-        <PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.0"/>
+        <PackageVersion Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.8"/>
+        <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="9.0.8"/>
+        <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.8"/>
+        <PackageVersion Include="Microsoft.Extensions.Http" Version="9.0.8"/>
+        <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.8"/>
+        <PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.8"/>
         <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.1"/>
         <PackageVersion Include="Xunit.DependencyInjection" Version="10.6.0"/>
         <PackageVersion Include="Xunit.DependencyInjection.Logging" Version="10.0.0"/>
