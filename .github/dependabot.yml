@@ -17,8 +17,6 @@ updates:
     ignore:
       - dependency-name: 'Microsoft.*'
         versions: [ '*' ]
-      - dependency-name: "FluentAssertions"
-        versions: [ '*' ]
     groups:
       All:
         patterns:

@@ -1,8 +1,8 @@
 namespace GuessWordClient.Tests;
 
 [PublicAPI]
-public class Startup {
-	public void ConfigureHost(IHostBuilder hostBuilder) {
+internal class Startup {
+	public static void ConfigureHost(IHostBuilder hostBuilder) {
 		hostBuilder
 			.ConfigureLogging(builder => {
 				builder.SetMinimumLevel(LogLevel.Trace);
