@@ -47,29 +47,18 @@ jobs:
         with:
           submodules: true
       
-      - name: Get Cache Month
-        id: cache-month
-        run: |
-          echo "date=$(/bin/date -u "+%Y%m")" >> $GITHUB_OUTPUT
-        shell: bash
-      
-      - uses: actions/cache@v4
-        with:
-          path: ~/.nuget/packages
-          key: nuget-${{ steps.cache-month.outputs.date }}-${{ hashFiles('src/Directory.Packages.props') }}
-          restore-keys: |
-            nuget-${{ steps.cache-month.outputs.date }}-
-      
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v5
         with:
           dotnet-version: |
             8.x
             9.x
+          cache: true
+          cache-dependency-path: src/**/packages.lock.json
       
       - name: Restore
         working-directory: ./src
-        run: dotnet restore -v normal
+        run: dotnet restore -v normal --locked-mode
       
       - name: Build
         working-directory: ./src
