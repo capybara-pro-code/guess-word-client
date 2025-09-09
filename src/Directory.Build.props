@@ -6,7 +6,7 @@
 
     <Authors>Aleksandr Salamatov</Authors>
     <Description>.Net Client for https://guess-word.com/</Description>
-    <Copyright>Copyright 2024 (c) Alexander Salamatov. All rights reserved.</Copyright>
+    <Copyright>Copyright 2025 (c) Alexander Salamatov. All rights reserved.</Copyright>
     <PackageProjectUrl>https://github.com/ch1seL/GuessWordClient/</PackageProjectUrl>
     <PackageIcon>icon.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
