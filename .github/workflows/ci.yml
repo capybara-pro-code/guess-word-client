@@ -76,7 +76,7 @@ jobs:
           GuessWordClient__Password: ${{ secrets.GUESSWORD_PASSWORD }}
       
       - name: Upload test results trx files
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         if: success() || failure()
         with:
           name: test-results
